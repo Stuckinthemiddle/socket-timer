@@ -11,15 +11,9 @@ class App extends Component {
     this.state = {
         timestamp: 'no timestamp messages yet ...'
     };
-    console.log('calling subscribeToTimer');
-    const callback = (err, timestamp) => { 
-      this.setState ({timestamp});
-    };
-
-    subscribeToTimer((err, timestamp) => { 
-      this.setState ({timestamp});
-    });
-    console.log('subscribed to timer');
+  }
+  handleSubscribe = (interval) => {
+    subscribeToTimer((err, timestamp) => {this.setState({timestamp})} , interval);
   }
 
   render() {
@@ -31,7 +25,7 @@ class App extends Component {
         </header>
         
         <p className="App-intro">
-          <InputForm />       
+          <InputForm  subscribe={this.handleSubscribe}/>       
           Timer value from server: {this.state.timestamp}
         </p>
       </div>

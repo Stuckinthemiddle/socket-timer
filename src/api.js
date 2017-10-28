@@ -7,8 +7,7 @@ function subscribeToTimer(cb, interval) {
     socket.on('timer', timestamp => cb (null, timestamp));
     // send (emit) event to server - subscribe to receive
     // timer events every 1000 ms
-
-    socket.emit('subscribeToTimer', 1000);
+    socket.emit('subscribeToTimer', interval);
 }
 
 export { subscribeToTimer }

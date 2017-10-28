@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
+import {subscribeToTimer} from './api.js';
 
 class InputForm extends Component {
     state ={interval: ''};
+
+
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log('handle Submit');
-
+        this.props.subscribe(this.state.interval);
     }
     render() {
         return (
