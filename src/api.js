@@ -2,7 +2,6 @@ import openSocket from 'socket.io-client';
 const socket = openSocket('http://localhost:8000');
 
 function subscribeToTimer(cb, interval) {
-    debugger;
     console.log('entered subscribeToTimer');
     // register handler for timer event
     socket.on('timer', timestamp => cb (null, timestamp));
