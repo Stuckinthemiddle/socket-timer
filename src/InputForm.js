@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {subscribeToTimer} from './api.js';
 
 class InputForm extends Component {
     state ={interval: ''};

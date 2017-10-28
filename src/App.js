@@ -3,17 +3,24 @@ import logo from './logo.svg';
 import './App.css';
 import {subscribeToTimer} from './api.js';
 import InputForm from './InputForm.js';
+import TimestampList from  './TimestampList.js';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-        timestamp: 'no timestamp messages yet ...'
+    this.state =  {
+      timestamps: [
+        {value: 'Enter Interval and Click Subscribe...'},
+      ]
     };
   }
   handleSubscribe = (interval) => {
-    subscribeToTimer((err, timestamp) => {this.setState({timestamp})} , interval);
+    subscribeToTimer((err, timestamp) => {
+          let val = {'value': timestamp};
+          this.setState({ timestamps: this.state.timestamps.concat(val) })
+        },  
+        interval); 
   }
 
   render() {
@@ -26,7 +33,8 @@ class App extends Component {
         
         <p className="App-intro">
           <InputForm  subscribe={this.handleSubscribe}/>       
-          Timer value from server: {this.state.timestamp}
+          Timer value from server:
+          <TimestampList timestamps={this.state.timestamps}/>
         </p>
       </div>
     );
